@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import common.business.IObserver;
 import common.business.IService;
 import common.business.ProjectException;
+import common.domain.Item;
 import common.domain.User;
 import common.dto.DTOUtils;
 import common.utils.LocalDateTimeTypeAdapter;
@@ -168,5 +169,73 @@ public class ProjectServicesJsonProxy implements IService{
             throw new ProjectException(err);
         }
         closeConnection();
+    }
+
+    @Override
+    public void updateUser(User user, IObserver client) throws ProjectException {
+        Request req = JsonProtocolUtils.createUpdateRequest(user);
+        sendRequest(req);
+        Response response = readResponse();
+        if(response.getType() == ResponseType.ERROR){
+            String err = response.getErrorMessage();
+            throw new ProjectException(err);
+        }
+    }
+
+    @Override
+    public List<Item> getAllItems() throws ProjectException{
+        Request req = JsonProtocolUtils.createGetAllItemsRequest();
+        sendRequest(req);
+        Response response = readResponse();
+        if(response.getType() == ResponseType.ERROR){
+            String err = response.getErrorMessage();
+            throw new ProjectException(err);
+        }
+        List<Item> items = DTOUtils.getItemsFromDTO(response.getItems());
+        return items;
+    }
+
+    @Override
+    public void orderItems(List<Item> cart, User user) throws ProjectException {
+        Request req = JsonProtocolUtils.createOrderRequest(DTOUtils.getDTO(user), cart);
+        sendRequest(req);
+        Response response = readResponse();
+        if(response.getType() == ResponseType.ERROR){
+            String err = response.getErrorMessage();
+            throw new ProjectException(err);
+        }
+    }
+
+    @Override
+    public void addItem(Item item) throws ProjectException {
+        Request req = JsonProtocolUtils.createAddItemRequest(item);
+        sendRequest(req);
+        Response response = readResponse();
+        if(response.getType() == ResponseType.ERROR){
+            String err = response.getErrorMessage();
+            throw new ProjectException(err);
+        }
+    }
+
+    @Override
+    public void deleteItem(long id) throws ProjectException {
+        Request req = JsonProtocolUtils.createDeleteItemRequest(id);
+        sendRequest(req);
+        Response response = readResponse();
+        if(response.getType() == ResponseType.ERROR){
+            String err = response.getErrorMessage();
+            throw new ProjectException(err);
+        }
+    }
+
+    @Override
+    public void updateItem(Item item) throws ProjectException{
+        Request req = JsonProtocolUtils.createUpdateItemRequest(item);
+        sendRequest(req);
+        Response response = readResponse();
+        if(response.getType() == ResponseType.ERROR){
+            String err = response.getErrorMessage();
+            throw new ProjectException(err);
+        }
     }
 }

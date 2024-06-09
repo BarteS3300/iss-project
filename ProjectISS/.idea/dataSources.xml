@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="iss" uuid="203227f2-c38f-459f-9052-a71bfb06f5fe">
+    <data-source source="LOCAL" name="iss" uuid="9a3aa4ec-2986-43f9-acdb-554cd0a7d920">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\ISS\ProjectISS\iss</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/iss</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

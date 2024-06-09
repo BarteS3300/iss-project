@@ -1,6 +1,9 @@
 package server;
 
 import common.business.IService;
+import common.domain.Item;
+import common.domain.Order;
+import common.domain.User;
 import common.utils.AbstractServer;
 import common.utils.ProjectJsonConcurrentServer;
 import common.utils.ServerException;
@@ -8,6 +11,8 @@ import server.business.Service;
 import server.repository.*;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.List;
 import java.util.Properties;
 
 public class StartJsonServer {
@@ -24,7 +29,16 @@ public class StartJsonServer {
         }
 
         IUserRepository userRepository = new UserHibernateRepository();
-        IService projectServerImpl = new Service(userRepository);
+        IItemRepository itemRepository = new ItemHibernateRepository();
+        OrderRepository orderRepository = new OrderRepository(serverProps);
+        userRepository.getAll().forEach(System.out::println);
+        itemRepository.getAll().forEach(System.out::println);
+        IService projectServerImpl = new Service(userRepository, itemRepository, orderRepository);
+
+//        List<Item> items = (List<Item>) itemRepository.getAll();
+//        User user = (User) userRepository.findOneByUsername("a").get();
+//        Order testOrder = new Order(user, items);
+//        orderRepository.addOrder(user, items);
 
         int projectServerPort = dafaultPort;
         try{

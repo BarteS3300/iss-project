@@ -1,5 +1,5 @@
 package common.jsonprotocol;
 
 public enum ResponseType {
-    UPDATE, OK, ERROR;
+    UPDATE, OK, ERROR
 }

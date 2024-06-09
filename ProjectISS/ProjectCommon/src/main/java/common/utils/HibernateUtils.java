@@ -1,5 +1,6 @@
 package common.utils;
 
+import common.domain.Item;
 import common.domain.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -17,6 +18,7 @@ public class HibernateUtils {
     private static SessionFactory createNewSessionFactory(){
         sessionFactory = new Configuration()
                 .addAnnotatedClass(User.class)
+                .addAnnotatedClass(Item.class)
                 .buildSessionFactory();
         return sessionFactory;
     }

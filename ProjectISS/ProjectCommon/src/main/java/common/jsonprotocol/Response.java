@@ -1,5 +1,6 @@
 package common.jsonprotocol;
 
+import common.dto.ItemDTO;
 import common.dto.UserDTO;
 
 public class Response {
@@ -11,6 +12,8 @@ public class Response {
     private String[] data;
 
     private String errorMessage;
+
+    private ItemDTO[] items;
 
     public Response() {
     }
@@ -45,5 +48,13 @@ public class Response {
 
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
+    }
+
+    public ItemDTO[] getItems() {
+        return items;
+    }
+
+    public void setItems(ItemDTO[] items) {
+        this.items = items;
     }
 }

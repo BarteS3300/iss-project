@@ -32,10 +32,10 @@ public class LogInController {
             return;
         }
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AgentMainPage.fxml"));
             Parent root = loader.load();
 
-            MainPageController controller = loader.getController();
+            AgentMainPageController controller = loader.getController();
 
             User user = service.logInUser(usernameField.getText(), passwordField.getText(), controller);
             System.out.println("Logged in as " + user.getUsername());
